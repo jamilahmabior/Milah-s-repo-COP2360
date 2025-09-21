@@ -1,1 +1,52 @@
+using System;
+
+namespace Module3Assignment
+{
+    public class Wine
+    {
+        public decimal Price { get; set; }
+        public int Year { get; set; }
+
+        // Constructor that takes only price
+        public Wine(decimal price)
+        {
+            Price = price;
+        }
+
+        // Constructor that takes price and year
+        public Wine(decimal price, int year) : this(price)
+        {
+            Year = year;
+        }
+
+        // Read-only calculated property
+        public int Age
+        {
+            get { return DateTime.Now.Year - Year; }
+        }
+
+        // Method to print details
+        public void PrintDetails()
+        {
+            Console.WriteLine($"Wine from {Year}, priced at ${Price}, age: {Age} years");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Using constructor overload (price only)
+            Wine wine1 = new Wine(78m);
+            wine1.Year = 2015;
+            wine1.PrintDetails();
+
+            // Using constructor overload (price + year)
+            Wine wine2 = new Wine(120m, 2001);
+            wine2.PrintDetails();
+
+            Console.ReadLine();
+        }
+    }
+}
 
