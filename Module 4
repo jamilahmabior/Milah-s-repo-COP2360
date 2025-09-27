@@ -1,1 +1,55 @@
+using System;
+
+namespace DivisionAndConversionExceptions
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Division and Conversion Exception Handling Program");
+
+            Console.Write("Enter the first number: ");
+            string input1 = Console.ReadLine();
+
+            Console.Write("Enter the second number: ");
+            string input2 = Console.ReadLine();
+
+            DivideNumbers(input1, input2);
+
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
+        }
+
+        static void DivideNumbers(string strNum1, string strNum2)
+        {
+            try
+            {
+                // Convert strings to integers
+                int num1 = Convert.ToInt32(strNum1);
+                int num2 = Convert.ToInt32(strNum2);
+
+                // Perform division
+                int result = num1 / num2;
+
+                Console.WriteLine($"Result: {num1} / {num2} = {result}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Error: One or both inputs are not in a valid integer format.");
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Error: Division by zero is not allowed.");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Error: One or both numbers are too large or too small for an integer.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error: {ex.Message}");
+            }
+        }
+    }
+}
 
